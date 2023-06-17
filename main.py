@@ -3,35 +3,33 @@ from replit import clear
 
 from art import logo
 
-print(logo)
 
-print("Welcome to the secret auction program.")
-
-isbidders = True
+should_contine = False
 
 bids = {}
 
-
-def auction(bidding_record):
-
+def highest_bidder(bidding_record):
     highest_bid = 0
     winner = ""
     for bidder in bidding_record:
         bid_amount = bidding_record[bidder]
         if bid_amount > highest_bid:
             highest_bid = bid_amount
-            winner = bidder
+            winner = highest_bid
     print(f"The winner is {winner} with a bid of ${highest_bid}")
 
 
-while isbidders:
-    name = input("What is your name?: ")
-    bid = int(input("What's your bid? $ "))
-    bids[name] = bid
-    other_bidders = input("Are there any other bidders? Type 'yes' or 'no'. ")
+while not should_contine:
+  print(logo)
+  name = input("What is your name? \n")
+  bid = int(input("What's your bid? $ \n"))
+  bids[name] = bid
+  other_bidder = input("Are they any other bidders? Type 'yes' or 'no' \n")
 
-    if other_bidders == "no":
-        isbidders = False
-        auction(bids)
-    elif other_bidders == "yes":
-        clear()
+
+  if other_bidder == "no":      
+    should_contine = True
+    highest_bidder(bids)
+    
+  elif other_bidder == "yes":
+    clear()
